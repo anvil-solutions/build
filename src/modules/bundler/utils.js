@@ -18,5 +18,7 @@ export function isLocal(filePath) {
  * @returns {string}
  */
 export function resolvePath(root, from, to) {
-  return to.startsWith('/') ? path.join(root, to) : path.relative(from, to);
+  if (to.startsWith('/')) return path.join(root, to);
+
+  return path.join(from.endsWith('/') ? from : path.dirname(from), to);
 }
