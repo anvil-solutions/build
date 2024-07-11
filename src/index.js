@@ -19,6 +19,7 @@ export const DEFAULT_BUILD_OPTIONS = {
       '*.jpg',
       '*.png',
       '*.svg',
+      '*.webp',
       '*.woff2'
     ]
   },
