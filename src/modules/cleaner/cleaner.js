@@ -1,4 +1,4 @@
-import { readFile, unlink } from 'node:fs/promises';
+import { readFile, readdir, unlink } from 'node:fs/promises';
 import path from 'node:path';
 
 export class Cleaner {
@@ -13,35 +13,44 @@ export class Cleaner {
   }
 
   /**
-   * @param {string[]} files
    * @returns {Promise<FileInfo[]>}
    */
-  async #getFiles(files) {
+  async #getFiles() {
+    const directoryEntries = await readdir(
+      this.#options.outDirectory,
+      { recursive: true, withFileTypes: true }
+    );
+
     return await Promise.all(
-      files
+      directoryEntries
+        .filter(
+          entry => entry.isFile() &&
+          !this.#options.thirdPartyModules.some(
+            ignore => path.join(entry.parentPath, entry.name).includes(ignore)
+          )
+        )
+        .map(entry => path.join(entry.parentPath, entry.name))
         .filter(
           file => !this.#options.thirdPartyModules.some(
             ignore => file.includes(ignore)
           )
         )
         .map(async file => {
-          const realPath = path.join(this.#options.outDirectory, file);
-          const buffer = await readFile(realPath);
+          const buffer = await readFile(file);
           return {
             content: buffer.toString(),
-            path: realPath
+            path: file
           };
         })
     );
   }
 
   /**
-   * @param {string[]} files
    * @returns {Promise<void>}
    */
-  async cleanUp(files) {
+  async cleanUp() {
     const promises = [];
-    const allFiles = await this.#getFiles(files);
+    const allFiles = await this.#getFiles();
 
     let searchableFiles = allFiles.filter(
       file => this.#options.cleaner.searchableExtensions.some(

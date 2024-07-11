@@ -74,5 +74,5 @@ export async function build(options) {
   const entryPoints = await bundler.getEntryPoints(files);
   await bundler.bundle(entryPoints);
 
-  await new Cleaner(buildOptions).cleanUp(files);
+  await new Cleaner(buildOptions).cleanUp();
 }
