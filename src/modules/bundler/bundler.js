@@ -1,3 +1,8 @@
+/**
+ * @import {FileInfo} from '../shared/types'
+ * @import {FullBuildOptions} from '../shared/types'
+ */
+
 import { isLocal, resolvePath } from './utils.js';
 import { Parser } from 'htmlparser2';
 import { build } from 'esbuild';

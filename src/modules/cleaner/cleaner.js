@@ -1,3 +1,8 @@
+/**
+ * @import {FileInfo} from '../shared/types'
+ * @import {FullBuildOptions} from '../shared/types'
+ */
+
 import { readFile, readdir, unlink } from 'node:fs/promises';
 import path from 'node:path';
 

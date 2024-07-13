@@ -1,3 +1,7 @@
+/**
+ * @import {FullBuildOptions} from '../shared/types'
+ */
+
 import { DEFAULT_BUILD_OPTIONS } from '../../index.js';
 import { stat } from 'node:fs/promises';
 

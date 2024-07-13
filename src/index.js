@@ -1,3 +1,8 @@
+/**
+ * @import {BuildOptions} from './modules/shared/types'
+ * @import {InternalBuildOptions} from './modules/shared/types'
+ */
+
 import { Builder } from './modules/builder/builder.js';
 import { Bundler } from './modules/bundler/bundler.js';
 import { Cleaner } from './modules/cleaner/cleaner.js';

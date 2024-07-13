@@ -1,3 +1,8 @@
+/**
+ * @import {Dirent} from 'node:fs'
+ * @import {FullBuildOptions} from '../shared/types'
+ */
+
 import { copyFile, mkdir, readdir, rm, writeFile } from 'node:fs/promises';
 import { build } from 'esbuild';
 import path from 'node:path';
@@ -21,7 +26,7 @@ export class Builder {
   }
 
   /**
-   * @param {import('node:fs').Dirent} directoryEntry
+   * @param {Dirent} directoryEntry
    * @returns {boolean}
    */
   #shouldIgnore(directoryEntry) {

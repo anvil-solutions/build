@@ -1,23 +1,23 @@
-interface FileInfo {
+export interface FileInfo {
   content: string;
   path: string;
 }
 
-interface BuilderOptions {
+export interface BuilderOptions {
   minifiableExtensions: string[];
 }
 
-interface BundlerOptions {
+export interface BundlerOptions {
   entryDocumentExtensions: string[];
   external: string[];
 }
 
-interface CleanerOptions {
+export interface CleanerOptions {
   deletableExtensions: string[];
   searchableExtensions: string[];
 }
 
-interface InternalBuildOptions {
+export interface InternalBuildOptions {
   builder: BuilderOptions;
   bundler: BundlerOptions;
   cleaner: CleanerOptions;
@@ -25,13 +25,13 @@ interface InternalBuildOptions {
   thirdPartyModules: string[];
 }
 
-interface ExternalBuildOptions {
+export interface ExternalBuildOptions {
   directories: string[];
   ignoreList: string[];
   outDirectory: string;
   rootDirectory: string;
 }
 
-type BuildOptions = Partial<InternalBuildOptions> & ExternalBuildOptions;
+export type BuildOptions = Partial<InternalBuildOptions> & ExternalBuildOptions;
 
-type FullBuildOptions = Required<BuildOptions>;
+export type FullBuildOptions = Required<BuildOptions>;

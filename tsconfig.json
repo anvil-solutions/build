@@ -10,10 +10,12 @@
   },
   "include": [
     "**/*.d.ts",
-    "**/*.js"
+    "**/*.js",
+    "**/*.ts"
   ],
   "exclude": [
     "coverage/*",
+    "generated/*",
     "out/*"
   ]
 }
