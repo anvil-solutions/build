@@ -2,8 +2,10 @@
   "type": "module",
   "name": "build",
   "main": "./src/index.js",
+  "types": "./generated/index.d.ts",
   "scripts": {
     "eslint": "eslint --no-eslintrc -c .eslintrc.json .",
+    "generate-types": "rm -rf ./generated && tsc -p tsconfig.d.json",
     "lint": "npm run eslint && npm run tsc",
     "test": "vitest run",
     "test:ui": "vitest --ui --coverage",
