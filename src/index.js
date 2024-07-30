@@ -7,6 +7,8 @@ import { Builder } from './modules/builder/builder.js';
 import { Bundler } from './modules/bundler/bundler.js';
 import { Cleaner } from './modules/cleaner/cleaner.js';
 
+const DEFAULT_VERSION = Math.floor(Date.now() / 1000).toString();
+
 /** @type {InternalBuildOptions} */
 export const DEFAULT_BUILD_OPTIONS = {
   builder: {
@@ -51,7 +53,7 @@ export const DEFAULT_BUILD_OPTIONS = {
   },
   commonEsbuildOptions: {
     banner: {
-      js: `/* ${Date.now().toString()} */`
+      js: `/* ${DEFAULT_VERSION} */`
     },
     format: 'esm',
     minify: true
@@ -59,7 +61,8 @@ export const DEFAULT_BUILD_OPTIONS = {
   thirdPartyModules: [
     'libs/',
     'node_modules/'
-  ]
+  ],
+  version: DEFAULT_VERSION
 };
 
 /**

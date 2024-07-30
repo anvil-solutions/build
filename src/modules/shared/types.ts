@@ -23,6 +23,7 @@ export interface InternalBuildOptions {
   cleaner: CleanerOptions;
   commonEsbuildOptions: import('esbuild').BuildOptions;
   thirdPartyModules: string[];
+  version: string;
 }
 
 export interface ExternalBuildOptions {

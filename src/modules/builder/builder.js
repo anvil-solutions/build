@@ -102,7 +102,7 @@ export class Builder {
 
     promises.push(
       writeFile(
-        path.join(this.#options.outDirectory, 'VERSION'), Date.now().toString()
+        path.join(this.#options.outDirectory, 'VERSION'), this.#options.version
       )
     );
 
