@@ -55,6 +55,7 @@ export const DEFAULT_BUILD_OPTIONS = {
     banner: {
       js: `/* ${DEFAULT_VERSION} */`
     },
+    chunkNames: '[hash]',
     format: 'esm',
     minify: true
   },
