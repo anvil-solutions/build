@@ -28,18 +28,8 @@ export class Cleaner {
 
     return await Promise.all(
       directoryEntries
-        .filter(
-          entry => entry.isFile() &&
-          !this.#options.thirdPartyModules.some(
-            ignore => path.join(entry.parentPath, entry.name).includes(ignore)
-          )
-        )
+        .filter(entry => entry.isFile())
         .map(entry => path.join(entry.parentPath, entry.name))
-        .filter(
-          file => !this.#options.thirdPartyModules.some(
-            ignore => file.includes(ignore)
-          )
-        )
         .map(async file => {
           const buffer = await readFile(file);
           return {

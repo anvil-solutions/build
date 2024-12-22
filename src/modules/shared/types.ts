@@ -4,7 +4,7 @@ export interface FileInfo {
 }
 
 export interface BuilderOptions {
-  minifiableExtensions: string[];
+  keepList: string[];
 }
 
 export interface BundlerOptions {

@@ -39,6 +39,26 @@ export class Builder {
   }
 
   /**
+   * @param {string} file
+   * @returns {boolean}
+   */
+  #shouldKeep(file) {
+    return this.#options.builder.keepList.some(
+      entry => file.includes(entry)
+    );
+  }
+
+  /**
+   * @param {string} file
+   * @returns {boolean}
+   */
+  #isThirdParty(file) {
+    return this.#options.thirdPartyModules.some(
+      entry => file.includes(entry)
+    );
+  }
+
+  /**
    * @returns {Promise<[string[], string[]]>}
    */
   async getFoldersAndFiles() {
@@ -85,19 +105,28 @@ export class Builder {
     const promises = [];
 
     for (const file of files) if (
-      !this.#options.thirdPartyModules.some(ignore => file.includes(ignore)) &&
-      this.#options.builder.minifiableExtensions.some(
+      ![
+        '.css',
+        '.cjs',
+        '.cts',
+        '.js',
+        '.jsx',
+        '.mjs',
+        '.mts',
+        '.ts',
+        '.tsx'
+      ].some(
         extension => file.endsWith(extension)
-      )
+      ) || this.#isThirdParty(file) && this.#shouldKeep(file)
     ) promises.push(
+      copyFile(file, path.join(this.#options.outDirectory, file))
+    );
+    else if (this.#shouldKeep(file)) promises.push(
       build({
         ...this.#options.commonEsbuildOptions,
         entryPoints: [file],
         outfile: path.join(this.#options.outDirectory, file)
       })
-    );
-    else promises.push(
-      copyFile(file, path.join(this.#options.outDirectory, file))
     );
 
     promises.push(

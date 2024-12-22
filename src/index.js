@@ -12,10 +12,7 @@ const DEFAULT_VERSION = Math.floor(Date.now() / 1000).toString();
 /** @type {InternalBuildOptions} */
 export const DEFAULT_BUILD_OPTIONS = {
   builder: {
-    minifiableExtensions: [
-      '.css',
-      '.js'
-    ]
+    keepList: []
   },
   bundler: {
     entryDocumentExtensions: [
@@ -23,6 +20,7 @@ export const DEFAULT_BUILD_OPTIONS = {
       '.php'
     ],
     external: [
+      '*.jpeg',
       '*.jpg',
       '*.png',
       '*.svg',
@@ -37,9 +35,11 @@ export const DEFAULT_BUILD_OPTIONS = {
       '.jpg',
       '.js',
       '.json',
+      '.map',
       '.png',
       '.svg',
-      '.ts'
+      '.webp',
+      '.woff2'
     ],
     searchableExtensions: [
       '.css',
@@ -47,8 +47,7 @@ export const DEFAULT_BUILD_OPTIONS = {
       '.js',
       '.json',
       '.md',
-      '.php',
-      '.ts'
+      '.php'
     ]
   },
   commonEsbuildOptions: {
