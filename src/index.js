@@ -60,8 +60,8 @@ export const DEFAULT_BUILD_OPTIONS = {
     minify: true
   },
   thirdPartyModules: [
-    'libs/',
-    'node_modules/'
+    'node_modules/',
+    'vendor/'
   ],
   version: DEFAULT_VERSION
 };
