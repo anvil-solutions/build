@@ -115,7 +115,7 @@ export class Cleaner {
    */
   async #deleteEmptyDirectories() {
     let directories = await this.#getDirectories();
-    let deletedDirectories = false;
+    let deletedDirectories;
     do {
       // eslint-disable-next-line no-await-in-loop
       const updatedDirectories = await Promise.all(
