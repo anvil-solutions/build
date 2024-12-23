@@ -3,7 +3,7 @@
  * @import {FullBuildOptions} from '../shared/types'
  */
 
-import { readFile, readdir, unlink } from 'node:fs/promises';
+import { readFile, readdir, rmdir, unlink } from 'node:fs/promises';
 import path from 'node:path';
 
 export class Cleaner {
@@ -41,9 +41,37 @@ export class Cleaner {
   }
 
   /**
+   * @returns {Promise<string[]>}
+   */
+  async #getDirectories() {
+    const directoryEntries = await readdir(
+      this.#options.outDirectory,
+      { recursive: true, withFileTypes: true }
+    );
+
+    return await Promise.all(
+      directoryEntries
+        .filter(entry => entry.isDirectory())
+        .map(entry => path.join(entry.parentPath, entry.name))
+    );
+  }
+
+  /**
+   * @param {string} directory
+   * @returns {Promise<[string, boolean]>}
+   */
+  static async #deleteIfEmpty(directory) {
+    const contents = await readdir(directory);
+    const isEmpty = contents.length === 0;
+
+    if (isEmpty) await rmdir(directory);
+    return [directory, isEmpty];
+  }
+
+  /**
    * @returns {Promise<void>}
    */
-  async cleanUp() {
+  async #deleteUnusedFiles() {
     const promises = [];
     const allFiles = await this.#getFiles();
 
@@ -80,5 +108,34 @@ export class Cleaner {
     } while (targets.length > 0);
 
     await Promise.all(promises);
+  }
+
+  /**
+   * @returns {Promise<void>}
+   */
+  async #deleteEmptyDirectories() {
+    let directories = await this.#getDirectories();
+    let deletedDirectories = false;
+    do {
+      // eslint-disable-next-line no-await-in-loop
+      const updatedDirectories = await Promise.all(
+        directories.map(directory => Cleaner.#deleteIfEmpty(directory))
+      );
+
+      deletedDirectories = updatedDirectories.some(
+        ({ 1: wasDeleted }) => wasDeleted
+      );
+      directories = updatedDirectories
+        .filter(({ 1: wasDeleted }) => !wasDeleted)
+        .map(([directory]) => directory);
+    } while (deletedDirectories);
+  }
+
+  /**
+   * @returns {Promise<void>}
+   */
+  async cleanUp() {
+    await this.#deleteUnusedFiles();
+    await this.#deleteEmptyDirectories();
   }
 }
