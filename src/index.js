@@ -74,8 +74,8 @@ export async function build(options) {
 
   const builder = new Builder(buildOptions);
   await builder.emptyOutDirectory();
-  const [folders, files] = await builder.getFoldersAndFiles();
-  await builder.createFolderStructure(folders);
+  const [directories, files] = await builder.getDirectoriesAndFiles();
+  await builder.createDirectoryStructure(directories);
   await builder.copyFiles(files);
 
   const bundler = new Bundler(buildOptions);

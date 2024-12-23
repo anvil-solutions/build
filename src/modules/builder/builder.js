@@ -61,36 +61,36 @@ export class Builder {
   /**
    * @returns {Promise<[string[], string[]]>}
    */
-  async getFoldersAndFiles() {
+  async getDirectoriesAndFiles() {
     const readData = await Promise.all(
       this.#options.directories.map(
-        folder => readdir(
-          folder,
+        directory => readdir(
+          directory,
           { recursive: true, withFileTypes: true }
         )
       )
     );
 
     const directoryEntries = readData.flat();
-    const folders = directoryEntries
+    const directories = directoryEntries
       .filter(entry => entry.isDirectory() && !this.#shouldIgnore(entry))
       .map(entry => path.join(entry.parentPath, entry.name));
     const files = directoryEntries
       .filter(entry => entry.isFile() && !this.#shouldIgnore(entry))
       .map(entry => path.join(entry.parentPath, entry.name));
 
-    return [[...this.#options.directories, ...folders], files];
+    return [[...this.#options.directories, ...directories], files];
   }
 
   /**
-   * @param {string[]} folders
+   * @param {string[]} directories
    * @returns {Promise<void>}
    */
-  async createFolderStructure(folders) {
+  async createDirectoryStructure(directories) {
     await Promise.all(
-      folders.map(
-        folder => mkdir(
-          path.join(this.#options.outDirectory, folder), { recursive: true }
+      directories.map(
+        directory => mkdir(
+          path.join(this.#options.outDirectory, directory), { recursive: true }
         )
       )
     );

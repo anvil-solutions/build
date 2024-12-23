@@ -11,17 +11,17 @@ describe('building', () => {
     expect(await exists(BUILD_OPTIONS.outDirectory)).toBe(false);
   });
 
-  it('should get folders and files', async () => {
+  it('should get directories and files', async () => {
     const builder = new Builder(BUILD_OPTIONS);
-    const [folders, files] = await builder.getFoldersAndFiles();
+    const [directories, files] = await builder.getDirectoriesAndFiles();
 
-    expect(folders).toContain('src');
+    expect(directories).toContain('src');
     expect(files).toContain('src/index.js');
   });
 
-  it('should create the folder structure', async () => {
+  it('should create the directory structure', async () => {
     const builder = new Builder(BUILD_OPTIONS);
-    await builder.createFolderStructure(['test']);
+    await builder.createDirectoryStructure(['test']);
 
     expect(
       await exists(path.join(BUILD_OPTIONS.outDirectory, 'test'))
