@@ -3,7 +3,7 @@ export interface FileInfo {
     path: string;
 }
 export interface BuilderOptions {
-    minifiableExtensions: string[];
+    keepList: string[];
 }
 export interface BundlerOptions {
     entryDocumentExtensions: string[];

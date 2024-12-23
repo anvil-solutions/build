@@ -1,4 +1,5 @@
 export class Cleaner {
+    static "__#3@#deleteIfEmpty"(directory: string): Promise<[string, boolean]>;
     constructor(options: FullBuildOptions);
     cleanUp(): Promise<void>;
     #private;

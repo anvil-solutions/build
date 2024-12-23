@@ -1,8 +1,8 @@
 export class Builder {
     constructor(options: FullBuildOptions);
     emptyOutDirectory(): Promise<void>;
-    getFoldersAndFiles(): Promise<[string[], string[]]>;
-    createFolderStructure(folders: string[]): Promise<void>;
+    getDirectoriesAndFiles(): Promise<[string[], string[]]>;
+    createDirectoryStructure(directories: string[]): Promise<void>;
     copyFiles(files: string[]): Promise<void>;
     #private;
 }
