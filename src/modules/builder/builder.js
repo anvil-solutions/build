@@ -43,7 +43,7 @@ export class Builder {
    * @returns {boolean}
    */
   #shouldKeep(file) {
-    return this.#options.builder.keepList.some(
+    return this.#options.keepList.some(
       entry => file.includes(entry)
     );
   }

@@ -19,9 +19,6 @@ const DEFAULT_VERSION = Math.floor(Date.now() / 1000).toString();
 
 /** @type {InternalBuildOptions} */
 export const DEFAULT_BUILD_OPTIONS = {
-  builder: {
-    keepList: []
-  },
   bundler: {
     entryDocumentExtensions: [
       '.html',
@@ -66,6 +63,8 @@ export const DEFAULT_BUILD_OPTIONS = {
     format: 'esm',
     minify: true
   },
+  ignoreList: [],
+  keepList: [],
   thirdPartyModules: [
     'node_modules/',
     'vendor/'

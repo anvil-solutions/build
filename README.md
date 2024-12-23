@@ -17,11 +17,6 @@ const ROOT_DIRECTORY = 'public';
 
 await build({
   directories: [ROOT_DIRECTORY],
-  ignoreList: [
-    '.d.ts',
-    '.git',
-    '.test.js'
-  ],
   outDirectory: 'out',
   rootDirectory: ROOT_DIRECTORY
 });

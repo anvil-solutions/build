@@ -3,10 +3,6 @@ export interface FileInfo {
   path: string;
 }
 
-export interface BuilderOptions {
-  keepList: string[];
-}
-
 export interface BundlerOptions {
   entryDocumentExtensions: string[];
   external: string[];
@@ -18,17 +14,17 @@ export interface CleanerOptions {
 }
 
 export interface InternalBuildOptions {
-  builder: BuilderOptions;
   bundler: BundlerOptions;
   cleaner: CleanerOptions;
   commonEsbuildOptions: import('esbuild').BuildOptions;
+  ignoreList: string[];
+  keepList: string[];
   thirdPartyModules: string[];
   version: string;
 }
 
 export interface ExternalBuildOptions {
   directories: string[];
-  ignoreList: string[];
   outDirectory: string;
   rootDirectory: string;
 }
