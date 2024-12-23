@@ -7,6 +7,7 @@ vi.mock('node:fs/promises', () => ({
   readFile: vi.fn(() => Promise.resolve(Buffer.from(''))),
   readdir: vi.fn(() => Promise.resolve([
     {
+      isDirectory: () => false,
       isFile: () => true,
       name: '.js',
       parentPath: ''

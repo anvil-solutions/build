@@ -8,6 +8,9 @@ import { stat } from 'node:fs/promises';
 /** @type {FullBuildOptions} */
 export const BUILD_OPTIONS = {
   ...DEFAULT_BUILD_OPTIONS,
+  builder: {
+    keepList: ['index.js']
+  },
   directories: ['src'],
   ignoreList: ['.test.js'],
   outDirectory: 'out',
