@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { isLocal, resolvePath } from './utils.js';
+import { isLocal, resolvePath } from './utilities.js';
 
 describe('local paths', () => {
   it('should return true on absolute local path', () => {

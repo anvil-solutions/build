@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { readFile, readdir, unlink } from 'node:fs/promises';
-import { BUILD_OPTIONS } from '../shared/test-utils.js';
+import { BUILD_OPTIONS } from '../shared/test-utilities.js';
 import { Cleaner } from './cleaner.js';
 
 vi.mock('node:fs/promises', () => ({

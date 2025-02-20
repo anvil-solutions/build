@@ -1,4 +1,4 @@
-import { BUILD_OPTIONS, exists } from '../shared/test-utils.js';
+import { BUILD_OPTIONS, exists } from '../shared/test-utilities.js';
 import { describe, expect, it } from 'vitest';
 import { Builder } from './builder.js';
 import path from 'node:path';

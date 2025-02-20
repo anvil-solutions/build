@@ -3,7 +3,7 @@
  * @import {FullBuildOptions} from '../shared/types'
  */
 
-import { isLocal, resolvePath } from './utils.js';
+import { isLocal, resolvePath } from './utilities.js';
 import { Parser } from 'htmlparser2';
 import { build } from 'esbuild';
 import path from 'node:path';

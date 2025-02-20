@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { BUILD_OPTIONS } from '../shared/test-utils.js';
+import { BUILD_OPTIONS } from '../shared/test-utilities.js';
 import { Bundler } from './bundler.js';
 
 describe('bundling', () => {

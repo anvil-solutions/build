@@ -1,5 +1,5 @@
 /**
- * @import {FullBuildOptions} from '../shared/types'
+ * @import {FullBuildOptions} from './types.js'
  */
 
 import { DEFAULT_BUILD_OPTIONS } from '../../index.js';

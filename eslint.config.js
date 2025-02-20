@@ -126,9 +126,9 @@ export default ts.config(
   },
   // Stylistic plugin configuration.
   {
-    ...stylistic.configs['all-flat'],
+    ...stylistic.configs.all,
     rules: {
-      ...stylistic.configs['all-flat'].rules,
+      ...stylistic.configs.all.rules,
       '@stylistic/array-element-newline': ['error', 'consistent'],
       '@stylistic/arrow-parens': ['error', 'as-needed'],
       '@stylistic/dot-location': ['error', 'property'],
@@ -208,9 +208,9 @@ export default ts.config(
   ),
   // Unicorn plugin configuration.
   {
-    ...unicorn.configs['flat/all'],
+    ...unicorn.configs.all,
     rules: {
-      ...unicorn.configs['flat/all'].rules,
+      ...unicorn.configs.all.rules,
       'unicorn/no-array-callback-reference': 'off',
       'unicorn/no-array-reduce': 'off',
       'unicorn/no-empty-file': 'off',
